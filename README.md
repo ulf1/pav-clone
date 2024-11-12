@@ -94,7 +94,7 @@ cat sendtoserver.js >> "${FOLDER}/${EXPNAME}.js"
 
 ### (6b) Call sendToServer in quitPsychoJS
 At the bottom of the `${EXPNAME}.js` (e.g. Test123.js) file there is a function `quitPsychoJS`.
-Call the `sendToServer();` in the first line of `quitPsychoJS`
+Call the `sendToServer();` function in the first line of `quitPsychoJS`
 
 For example,
 ```js
@@ -105,6 +105,8 @@ async function quitPsychoJS(message, isCompleted) {
 ``` 
 
 ### (7) Check if works 
+You need to have PHP-CLI installed for this (See section "Development" below)
+
 ```sh
 cd "${FOLDER}"
 php -S localhost:8000
