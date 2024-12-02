@@ -2,7 +2,7 @@
 
 /**
  * (1) Append this function to your [experiment name].js file
- * (2) Call this function `sendToServer();` in the 1st line of `quitPsychoJS` 
+ * (2) Call this function `sendToServer()` in the 1st line of `quitPsychoJS` 
  */
 async function sendToServer(){
     // Deaktiviere dass PsychoJS einen Download triggert (deactivate triggering CSV downloads)
