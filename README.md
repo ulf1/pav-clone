@@ -16,6 +16,8 @@ After restarting, proceed.
 
 (3) Download the template repo:
 - Go back to the Terminal Window and type: `git clone https://github.com/ulf1/pav-clone.git`
+- Type the command `cd pav-clone`. This how navigate into another folder on the terminal.
+- Type the command `ls -l`. This will give a list of files and folders in this directory.
 - In your File Explorer you should see a folder `Linux/Ubuntu/home/<yourname>/pav-clone`
 
 Proceed with step (2) in the next chapter.
