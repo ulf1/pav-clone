@@ -1,7 +1,24 @@
 # Get PsychoJS Code running on-premise
 
 ## Win Howto (Powershell)
--under construction-
+The easist way to get the bash script running on Windows is the "Windows Subsystem for Linux" (WSL).
+
+(1) Install WSL
+- (a) Login with your Administrator account in Windows
+- (b) Open the Program "Powershell"
+- (c) Type the command `wsl --install` and follow the instruction.
+
+After restarting, proceed.
+
+(2) What was installed
+- Search for Program "WSL". It has a cute pinguin icon. It starts an Ubuntu Terminal window (we need that later)
+- Open your File Explorer (Win+E). On the bottom left there is net drive `Linux/Ubuntu/...`. Go to `home/<yourname>`.
+
+(3) Download the template repo:
+- Go back to the Terminal Window and type: `git clone https://github.com/ulf1/pav-clone.git`
+- In your File Explorer you should see a folder `Linux/Ubuntu/home/<yourname>/pav-clone`
+
+Proceed with step (2) in the next chapter.
 
 
 ## *nix HowTo (bash)
@@ -9,7 +26,7 @@
 
 ### (1) Clone this Git-Rep
 ```sh
-git clone pav-clone
+git clone https://github.com/ulf1/pav-clone.git
 cd pav-clone
 ```
 
