@@ -12,14 +12,14 @@ fi
 
 
 # checke inputs
-if [ $1 ]; then
+if [ "$1" ]; then
     FOLDER=$1
 else
     echo "not psychopy project folder specified"
     exit 1;
 fi
 
-if [ $2 ]; then
+if [ "$2" ]; then
     EXPNAME=$2
 else
     echo "no experiment name supplied"
