@@ -53,13 +53,20 @@ if [ ! -d "${FOLDER}/lib" ]; then
 fi
 
 # find psychopy version
-PJSVERSION=$(cat "${FOLDER}/${EXPNAME}.js" | grep -o -P '(?<=lib/psychojs-).*(?=.js)')
 AVAILVERSION=$(ls -l "${FOLDER}/lib" | grep psychojs | grep ".css" | grep -o -P '(?<=psychojs-).*(?=.css)')
-
+# replace in JS file
+PJSVERSION=$(cat "${FOLDER}/${EXPNAME}.js" | grep -o -P '(?<=lib/psychojs-).*(?=.js)')
 if [ "${PJSVERSION}" != "${AVAILVERSION}" ]; then
     # replace versions
-    echo "replace your psychojs ${PJSVERSION} with ${AVAILVERSION}"
+    echo "replace your psychojs ${PJSVERSION} with ${AVAILVERSION} in .js file"
     sed -i.bak "s/${PJSVERSION}/${AVAILVERSION}/g" "${FOLDER}/${EXPNAME}.js"
+fi
+
+# replace in HTML file
+PJSVERSION=$(cat "${FOLDER}/index.html" | grep -o -P '(?<=lib/psychojs-).*(?=.css)')
+if [ "${PJSVERSION}" != "${AVAILVERSION}" ]; then
+    # replace versions
+    echo "replace your psychojs ${PJSVERSION} with ${AVAILVERSION} in .html file"
     sed -i.bak "s/${PJSVERSION}/${AVAILVERSION}/g" "${FOLDER}/index.html"
 fi
 
