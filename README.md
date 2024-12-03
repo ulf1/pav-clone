@@ -1,6 +1,6 @@
 # Get PsychoJS Code running on-premise
 
-## Win Howto (Powershell)
+## Win Howto
 The easist way to get the bash script running on Windows is the "Windows Subsystem for Linux" (WSL).
 
 (1) Install WSL
