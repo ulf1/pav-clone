@@ -71,6 +71,8 @@ cd mini-beispiel
 php -S localhost:8000
 ```
 
+Open http://localhost:8000/ in your Browser.
+
 In Chrome or Firefox, open the "Developer Tools" and check the Console tab to see if there is an Javascript error on client side.
 On your Ubuntu-PC, you will see the error logs of the PHP web server.
 
