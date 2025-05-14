@@ -103,5 +103,23 @@ ls /home/webfb11/public_html.allgpsych-studien.uni-bremen.de/test123/data
 ```
 
 
+## Misc
+
+### Filter Array of JSON
+The CSV file can be corrupted, e.g. `psychoJS.experiment.nextEntry(snapshot);` calls are used for other things than trial data.
+For this purpose the whole `psychoJS._experiment._trialsData` Array of JSON is dumped as `.json` in the data folder too.
+You can load and filter these JSON files in R as follows: a) pick a key that only shows up in your trial data, e.g. the key `trial_count`. 
+Change the snippet accordingly (see `entry$trial_count`)
+
+```R
+library("rjson")
+json_file <- "beispiel.json"
+json_data <- fromJSON(file=json_file)
+isLegitEntry <- function(entry){ !is.null(entry$trial_count) }
+new_data <- Filter(isLegitEntry, json_data)
+tb <- as.data.frame(new_data)
+```
+
+
 ## Acknowledgement
 https://codewithsusan.com/notes/psychopy-self-hosted-experiments
