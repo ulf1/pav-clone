@@ -16,8 +16,7 @@ async function sendToServer(){
   console.log("check:", filename)
 
   // Lese die Versuchsdaten roh aus und schicke als Array of JSON an Server
-  let dataObj = psychoJS._experiment._trialsData;
-  console.log("array:")
+  let dataObj = psychoJS._experiment._trialsData.slice();
 
   // JSON Zum Server senden
   fetch('save_trial.php', {
@@ -39,8 +38,7 @@ async function sendToServer(){
   //let dataset = [Object.keys(dataObj[0])].concat(dataObj).map(it => {
   //    return Object.values(it).toString()
   //}).join('\n')
-  console.log("sliced:", dataObj.slice())
-  const worksheet = XLSX.utils.json_to_sheet(dataObj.slice(), {skipHeader: false});
+  const worksheet = XLSX.utils.json_to_sheet(dataObj, {skipHeader: false});
   let dataset = ( (true) ? "\ufeff" : "" ) + XLSX.utils.sheet_to_csv(worksheet);
 
   // Zum Server senden
