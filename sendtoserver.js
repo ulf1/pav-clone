@@ -2,6 +2,10 @@
  * (1) Append this function to your [experiment name].js file
  * (2) Call this function `sendToServer()` in the 1st line of `quitPsychoJS` 
  */
+
+/** @type {import("./xlsx")} */
+const XLSX = globalThis.XLSX;
+
 async function sendToServer(){
   // Deaktiviere dass PsychoJS einen Download triggert (deactivate triggering CSV downloads)
   psychoJS._saveResults = 0; 
@@ -13,6 +17,7 @@ async function sendToServer(){
 
   // Lese die Versuchsdaten roh aus und schicke als Array of JSON an Server
   let dataObj = psychoJS._experiment._trialsData;
+  console.log("array:")
 
   // JSON Zum Server senden
   fetch('save_trial.php', {
@@ -30,10 +35,13 @@ async function sendToServer(){
   })
 
   // Filter Versuchsdaten nach dem Key "trial_count" und speicher als CSV
-//   let tmpObj = dataObj.filter(evt => Number.isInteger(evt["trial_count"]) )
-  let dataset = [Object.keys(dataObj[0])].concat(dataObj).map(it => {
-      return Object.values(it).toString()
-  }).join('\n')
+  // let tmpObj = dataObj.filter(evt => Number.isInteger(evt["trial_count"]) )
+  //let dataset = [Object.keys(dataObj[0])].concat(dataObj).map(it => {
+  //    return Object.values(it).toString()
+  //}).join('\n')
+  console.log("sliced:", dataObj.slice())
+  const worksheet = XLSX.utils.json_to_sheet(dataObj.slice(), {skipHeader: false});
+  let dataset = ( (true) ? "\ufeff" : "" ) + XLSX.utils.sheet_to_csv(worksheet);
 
   // Zum Server senden
   fetch('save_trial.php', {

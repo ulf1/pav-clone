@@ -70,6 +70,17 @@ if [ "${PJSVERSION}" != "${AVAILVERSION}" ]; then
     sed -i.bak "s/${PJSVERSION}/${AVAILVERSION}/g" "${FOLDER}/index.html"
 fi
 
+# load xlsx package in HTML file
+if [ $(cat "${FOLDER}/index.html" | grep 'xlsx.full.min.js' | wc -l) -gt 0 ]; then
+    echo "JS package xlsx already loaded in index.html"
+else
+    LINENUM=$(awk '/<body>/{ print NR; exit }' "${FOLDER}/index.html")
+    head -n $LINENUM "${FOLDER}/index.html" > "${FOLDER}/index2.html"
+    echo '    <script lang="javascript" src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>' >> "${FOLDER}/index2.html"
+    tail -n +$((LINENUM + 1)) "${FOLDER}/index.html" >> "${FOLDER}/index2.html"
+    mv "${FOLDER}/index.html" "${FOLDER}/index.html.bak"
+    mv "${FOLDER}/index2.html" "${FOLDER}/index.html"
+fi
 
 # (5) Copy the PHP server script 
 # the purpose of the PHP server script is to receive and store trial data 
